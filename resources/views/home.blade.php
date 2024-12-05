@@ -1,42 +1,72 @@
-@extends('layouts.app')
+@extends('layout.app')
 
-@section('title', 'Home - MaezaFarm')
+@section('title', 'Home - SMAS AL - ULUM')
 
 @section('content')
-    <!-- Hero Start -->
-    <div class="py-5 mb-5 container-fluid bg-primary hero-header">
-        <div class="container py-5">
-            <div class="row justify-content-start">
-                <div class="col-lg-8 text-lg-start col-lg-4 col-md-6 text-start">
-                    <h1 class="text-white display-1 text-uppercase mb-lg-4">Penyedia Kambing <span style="color:white;">Qurban & Aqiqah</span></h1>
-                    <h1 class="text-white text-uppercase mb-lg-4">Mudah, Amanah, & Terpercaya</h1>
-                    {{-- <p class="text-white font-modern d-none d-md-block fs-4 mb-lg-4">
-                        Kami menyediakan layanan kambing qurban dan aqiqah yang berkualitas. Juga menerima program tabungan qurban untuk memudahkan perencanaan ibadah Anda.
-                    </p> --}}
+  <div id="pageintro" class="hoc clear">
+    <article>
+      <h3 class="heading" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Website Konseling <span style="color:orange;font-weight:bold;"> SMAS AL - ULUM</span></h3>
+      <p>Percepatan Informasi dan untuk menangani siswa yang perlu di bimbing</p>
+      {{-- <footer>
+        <ul class="inline nospace pushright">
+          <li><a class="btn" href="#">Pharetra etiam</a></li>
+          <li><a class="btn inverse" href="#">Sagittis massa</a></li>
+        </ul>
+      </footer> --}}
+    </article>
+  </div>
+</div>
+<!-- End Top Background Image Wrapper -->
+<div class="wrapper row3">
+  <main class="container hoc clear">
+    <!-- main body -->
 
-                    <!-- Tambahkan gambar di sini -->
-                    {{-- <img src="{{ asset('img/bobot.png') }}" width="80%" height="80%" alt="Deskripsi Gambar" class="my-4 img-fluid"> --}}
-
-                    {{-- <div class="pt-5 d-flex align-items-center justify-content-center justify-content-lg-start">
-                        <a href="#product" class="border-2 btn btn-outline-light py-md-3 px-md-5 me-5">Konsultasi</a>
-                        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/maezafarmofficial" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h5 class="m-0 text-white font-weight-normal ms-4 d-none d-sm-block">Play Video</h5>
-                    </div> --}}
+    <hr class="btmspace-80">
+    <section id="overview">
+      <div class="sectiontitle">
+        <p class="nospace font-xs">SMAS AL - ULUM TERPADU</p>
+        <p class="underline heading font-x2">Pelayanan Koseling</p>
+      </div>
+      <ul class="nospace group btmspace-80">
+        <li class="one_third">
+        <article>
+            <article>
+                <div class="clear" style="display: flex; align-items: center;">
+                  <a href="#"><img src="{{ asset('images/publik.png') }}" alt="Pelayanan Publik" style="width: 30px; height: 30px; margin-right: 10px;"></a>
+                  <h6 class="heading">Konseling Pelanggaran</h6>
                 </div>
+                <p>Patung ini berdampingan dengan Kuil Shri Raja Rajeshwari Amman Kovil. Pembuatannya langsung ditangani oleh pemahat dari India.</p>
+              </article>
+        </li>
+        <li class="one_third">
+          <article>
+            <div class="clear" style="display: flex; align-items: center;">
+                <a href="#"><img src="{{ asset('images/lapor.png') }}" alt="Pelayanan Publik" style="width: 30px; height: 30px; margin-right: 10px;"></a>
+                <h6 class="heading">Konseling Prestasi</h6>
             </div>
-        </div>
-    </div>
+            <p>Sagittis arcu a magna eget cursus lacus consectetur proin imperdiet bibendum elit id molestie ipsum ut tellus.</p>
+          </article>
+        </li>
+        <li class="one_third">
+          <article>
+            <div class="clear" style="display: flex; align-items: center;">
+                <a href="#"><img src="{{ asset('images/aplikasi.png') }}" alt="Pelayanan Publik" style="width: 30px; height: 30px; margin-right: 10px;"></a>
+                <h6 class="heading">Layanan Lainnya</h6>
+            </div>
+            <p>Orci blandit ac mauris ac gravida maximus nulla curabitur convallis massa sed urna placerat sed tempor velit.</p>
+          </article>
+        </li>
+      </ul>
+      <footer class="center"><a class="btn" href="#">Terima Kasih</a></footer>
+    </section>
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
 
-    <!-- Hero End -->
+{{-- @include('partials.profil')
+@include('partials.struktur')
+@include('partials.profillurah')
+@include('components.artikel') --}}
 
-    <!-- About Start -->
-    @include('partials.about')
-    @include('partials.service')
-    @include('components.special')
-    @include('components.product')
-    {{-- @include('components.pricing') --}}
-    @include('components.testimoni')
-    <!-- About End -->
 @endsection

@@ -3,16 +3,17 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Customer;
+use App\Models\Pelanggaran;
 use Filament\Widgets\ChartWidget;
 
 class CustomerChart extends ChartWidget
 {
-    protected static ?string $heading = 'Jumlah Pelanggan Bulanan';
+    protected static ?string $heading = 'Jumlah Konseling Bulanan';
 
     protected function getData(): array
     {
         // Mengambil data pelanggan berdasarkan bulan
-        $customerData = Customer::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
+        $customerData = Pelanggaran::selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
             ->groupBy('bulan')
             ->get();
 
@@ -27,7 +28,7 @@ class CustomerChart extends ChartWidget
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'Jumlah Pelanggan',
+                    'label' => 'Jumlah Konseling',
                     'data' => $values,
                     'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
                     'borderColor' => 'rgba(75, 192, 192, 1)',

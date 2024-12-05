@@ -48,16 +48,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function customer()
+    public function siswa()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Siswa::class, 'customer_id');
     }
 
     /**
      * Get the transactions for the user.
      */
-    public function transaksi(): HasMany
-    {
-        return $this->hasMany(Transaksi::class, 'customer_id');
-    }
+    // public function transaksi(): HasMany
+    // {
+    //     return $this->hasMany(Transaksi::class, 'customer_id');
+    // }
 }

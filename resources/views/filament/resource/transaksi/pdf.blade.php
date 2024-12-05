@@ -4,32 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Penjualan</title>
+    <title>Surat Konseling</title>
     <style>
         @page {
             size: A4;
             margin: 10mm;
         }
 
-        @media print {
-            body {
-                width: 210mm;
-                height: 297mm;
-            }
-
-            .break-inside-avoid {
-                break-inside: avoid;
-            }
-        }
-
         body {
-            font-family: sans-serif;
+            font-family: 'Times New Roman', serif;
             font-size: 12px;
-            line-height: 1.2;
-            color: #4a5568;
-            height: 100%;
-            display: flex;
-            justify-content: center;
+            line-height: 1.5;
+            color: #000;
+            margin: 0;
         }
 
         .container {
@@ -41,142 +28,71 @@
         .header {
             display: flex;
             align-items: center;
-            margin-bottom: 16px;
-            border-bottom: 2px solid black;
-            padding-bottom: 12px;
-        }
-
-        .header img {
             width: 100%;
-            max-width: 115px;
-            height: auto;
-            margin-left: 8px;
         }
 
-        .header .details {
-            flex-grow: 1;
-            margin-left: 16px;
+        .content {
+            margin-top: 20px;
         }
 
-        .header .details h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 4px;
-            text-align: center;
+        .content p {
+            margin: 8px 0;
+            text-align: justify;
         }
 
-        .header .details p {
-            font-size: 10pt;
-            line-height: 1.3;
-            text-align: center;
-        }
-
-        .title-section {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .title-section h2 {
-            font-size: 18px;
-            font-weight: bold;
-            color: #4a5568;
-        }
-
-        .title-section h5 {
-            margin-top: 4px;
-            color: #718096;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 16px;
-            font-size: 9pt;
-        }
-
-        .table th,
-        .table td {
-            border: 1px solid #d2d6dc;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .table th {
-            background-color: #f7fafc;
-            text-transform: uppercase;
-        }
-
-        .table tr:nth-child(even) {
-            background-color: #f9fafb;
-        }
-
-        .text-right {
+        .signature {
+            margin-top: 40px;
             text-align: right;
         }
 
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-4 {
-            margin-top: 16px;
-        }
-
-        .mt-1 {
-            margin-top: 4px;
+        .signature p {
+            margin: 4px 0;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-
         <div class="header">
-            {{-- <div class="flex-none w-1/5 pr-4 ml-2">
-                <img src="https://tse2.mm.bing.net/th?id=OIP.jo8RF--jtdFjlATp3dzLmAAAAA&pid=Api&P=0&h=180" alt="Batu Keriting Logo">
-            </div> --}}
-            <div class="details">
-                <h1>MAEZA FARM</h1>
-                <p>
-                    Jalan Batu Berambut Lebat No. 123, Kel. Batu Kribo,<br>
-                    Kec. Granit Gondrong, Kota Batu Gaya, Jawa Utara 12345<br>
-                    Telp: (0291)123432 / 081222885323 | Email: info@batuemotnusantara.com
-                </p>
-            </div>
+            <img src="{{ public_path('kop.png') }}" style="width: 100%;margin-top:-30px;" alt="Logo Sekolah">
         </div>
 
-        <div class="title-section">
-            <h2>DATA RIWAYAT TRANSAKSI (DRT)</h2>
-        </div>
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nomor Kontrak</th>
-                        <th>Bulan Angsuran</th>
-                        <th>Angsuran ke</th>
-                        <th>Nilai Angsuran</th>
-                        <th>Tanggal Pembayaran</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($transaksi as $item)
-                    <tr>
-                        <td>{{ $item->no }}</td>
-                        <td>{{ $item->bulan_angsuran }}</td>
-                        <td>{{ $item->angsuran_ke }}</td>
-                        <td>{{ $item->nilai_angsuran }}</td>
-                        <td>{{ $item->tanggal_pembayaran }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="title-section" style="text-align: center">
+            <h2>SURAT KONSELING SISWA (SKS)</h2>
         </div>
 
+        <div class="content" style="margin: 15px;">
+            <p>Nomor:</p>
+            <p>Perihal: Surat Hasil Konseling</p>
+            <p>Kepada Yth,</p>
+            <p>Sdr/i. {{ $pelanggaran->siswa->nama ?? 'Nama tidak ditemukan' }}</p>
+            <p>Kelas: {{ $pelanggaran->siswa->kelas->nama_kelas ?? '-' }}</p>
+            <p>Di tempat.</p>
+
+            <p style="font-weight: bold;">Dengan hormat,</p>
+            <p>
+                Berdasarkan hasil konseling yang telah dilaksanakan pada tanggal {{ $pelanggaran->tanggal }},
+                berikut ini kami sampaikan ringkasan dari hasil konseling:
+            </p>
+
+            <p><strong>Jenis Konseling:</strong> {{ $pelanggaran->jenis_pelanggaran }}</p>
+            <p><strong>Catatan Konselor:</strong> {{ $pelanggaran->catatan }}</p>
+            <p><strong>Keterangan:</strong> {{ $pelanggaran->keterangan }}</p>
+
+            <p>
+                Kami berharap hasil konseling ini dapat menjadi bahan evaluasi dan motivasi bagi Saudara/i
+                dalam meningkatkan perilaku, kedisiplinan, serta prestasi di sekolah.
+            </p>
+
+            <p>Demikian surat ini kami sampaikan. Terima kasih atas perhatian dan kerjasama Saudara/i.</p>
+        </div>
+
+        <div class="signature" style="margin: 15px;">
+            <p>Medan, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+            <p>Konselor,</p>
+            <br><br><br>
+            <p><strong>GURU BK</strong></p>
+        </div>
     </div>
 </body>
 

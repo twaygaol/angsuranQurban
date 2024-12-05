@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Models\User;
-use App\Models\Customer; // Import model Customer
+use App\Models\Siswa; // Import model Customer
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -28,19 +28,19 @@ class UserResource extends Resource
                 Select::make('hak_akses')
                     ->label('Hak Akses')
                     ->options([
-                        'Customer' => 'Customer',
+                        'Siswa' => 'Siswa',
                     ])
                     ->reactive()
                     ->required(),
 
                 // Select untuk Nama Customer
                 Select::make('customer_id') // Menggunakan customer_id untuk memilih customer
-                    ->label('Nama Customer')
+                    ->label('Nama siswa')
                     ->options(function (callable $get) {
                         $hakAkses = $get('hak_akses');
 
-                        if ($hakAkses === 'Customer') {
-                            return Customer::pluck('nama', 'id');
+                        if ($hakAkses === 'Siswa') {
+                            return Siswa::pluck('nama', 'id');
                         }
 
                         return [];
@@ -48,8 +48,8 @@ class UserResource extends Resource
                     ->afterStateUpdated(function ($state, callable $set, callable $get) {
                         $hakAkses = $get('hak_akses');
 
-                        if ($hakAkses === 'Customer') {
-                            $customer = Customer::find($state);
+                        if ($hakAkses === 'Siswa') {
+                            $customer = Siswa::find($state);
                             if ($customer) {
                                 $set('name', $customer->nama);
                             }
@@ -92,7 +92,7 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nama'),
                 Tables\Columns\TextColumn::make('email')->label('Email'),
-                Tables\Columns\TextColumn::make('customer.nama')->label('Customer Name'), // Kolom untuk Customer Name
+                Tables\Columns\TextColumn::make('siswa.nama')->label('Name Siswa'), // Kolom untuk Customer Name
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
